@@ -1,0 +1,14 @@
+dist
+logs
+conf/local.conf
+project/project
+project/target
+target
+tmp
+*.swp
+.cache
+.classpath
+.ensime*
+.project
+.settings
+.target

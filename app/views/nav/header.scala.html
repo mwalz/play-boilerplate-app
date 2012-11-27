@@ -1,0 +1,48 @@
+@(currentUser: Option[User])
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="@routes.Application.index">My Application</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li>
+            <a href="@routes.Application.everybody">Everybody</a>
+          </li>
+          <li>
+            <a href="@routes.Application.usersOnly">Users Only</a>
+          </li>
+          <li>
+            <a href="@routes.Application.adminOnly">Admin Only</a>
+          </li>
+        </ul>
+       
+        @currentUser match {
+          case Some(u) => {
+            <ul class="nav pull-right">
+              @defining(u.firstName) { firstName =>
+              <li class="dropdown"><a href="#user" class="dropdown-toggle" data-toggle="dropdown">@firstName<b class="caret"></b></a>
+              }
+                <ul class="dropdown-menu">
+                  <li><a href="#">Profile</a></li>                
+                  <li><a href="@routes.Application.logout()">Logout</a></li>                
+                </ul>      
+              </li>      
+            </ul>
+          }
+          case None => {
+            <ul class="nav pull-right">
+              <li><a href="@routes.Application.login">Login</a></li>
+            </ul>
+          }
+        } 
+        
+      </div><!--/.nav-collapse -->
+    </div>
+    
+  </div>
+</div>

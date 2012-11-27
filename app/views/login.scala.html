@@ -1,0 +1,48 @@
+@(loginForm: Form[(String, String)])(implicit flash: Flash)
+
+@import helper.twitterBootstrap._  
+    
+@main(title = "Login"){
+
+<div class="login-form">  
+  <h1>Login</h1>
+
+  @loginForm.globalError.map { error =>
+    <div class="alert alert-error">
+      <strong>@error.message</strong>
+    </div>
+  }
+
+  @flash.get("error").map { message =>
+    <div class="alert alert-error">
+      <strong>@message</strong>
+    </div>
+  }
+      
+  @flash.get("success").map { message =>
+    <p class="alert alert-success">
+      @message
+    </p>
+  }
+
+  @helper.form(routes.Application.authenticate, 'class -> "form-inline") {
+    <div class="control-group">
+        <div class="controls">
+          <label class="control-label" for="inputEmail">Email</label>
+          <input type="text" name="email" placeholder="email address" id="email" value="@loginForm("email").value">  
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+          <label class="control-label" for="inputEmail">Password</label>
+          <input type="text" name="password" placeholder="password" id="password" value="@loginForm("password").value">      
+          <button type="submit" class="btn btn-primary" id="loginbutton">Login</button> 
+        </div>
+    </div>       
+  }
+
+  <p class="note">
+    Need an account? <br/>Contact <a href="#">My Application</a> for access.
+  </p>
+}
+</div>

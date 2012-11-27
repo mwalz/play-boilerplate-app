@@ -1,0 +1,9 @@
+@(throwable: Throwable)
+
+@main(title = "An Error Occurred") {
+
+  <h1>We're sorry there was an application error!</h1>
+  
+  <p>@throwable.getMessage</p>
+
+}
